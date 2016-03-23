@@ -25,5 +25,4 @@ ADD sync-as-0.1.2.tar.gz $AS_HOME
 WORKDIR /opt/sync/as/
 
 EXPOSE 8080
-ENTRYPOINT ["/jdk1.8.0_65/bin/java", "-jar"]
-CMD ["lib/as-startup.jar"]
+ENTRYPOINT ["/jdk1.8.0_65/bin/java", "-jar", "lib/as-startup.jar"]
