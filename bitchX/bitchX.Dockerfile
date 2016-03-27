@@ -10,9 +10,8 @@ RUN apt-get install -y --force-yes 	wget \
 RUN wget http://www.bitchx.com/download/bitchx-1.2.1.tar.gz -O bitchx-1.2.1.tar.gz
 RUN tar zxvfp bitchx-1.2.1.tar.gz
 
-RUN cd bitchx-1.2.1
-RUN ./configure & make & make install
+RUN cd /bitchx-1.2.1 && ./configure && make && make install
 
 ENV ircserver chat.freenode.net
 
-ENTRYPOINT ["/ust/local/bin/BitchX $ircserver"]
+ENTRYPOINT ["/usr/local/bin/BitchX"]
