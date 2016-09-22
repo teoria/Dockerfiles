@@ -23,18 +23,11 @@ RUN mkdir -p /app
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 RUN cd $APP_HOME
-ENV APP_URL https://github.com/rackerlabs/rax_rails_tutorial.git
+
+ENV APP_URL https://github.com/arthur-vieira/sample_twitter.git
 RUN git clone $APP_URL .
-
-RUN sed -i -e 's/2.0.0/2.3.1/g' Gemfile
-RUN bundle config git.allow_insecure true
-RUN gem install bundler && bundle install
-
-WORKDIR $APP_HOME
-RUN cd $APP_HOME
-RUN ls -l .
-
-RUN bundle exec rake db:create
+RUN gem install bundler && bundle install --jobs 20 --retry 5
+RUN rake db:migrate
 
 EXPOSE 3000
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
