@@ -1,5 +1,5 @@
 FROM ubuntu:15.04
-MAINTAINER Marco Matos docker@corp.mmatos.com
+MAINTAINER Marco Matos marco@luxaware.com
 
 RUN apt-get update && apt-get -f install
 RUN apt-get install -y --force-yes 	wget \
