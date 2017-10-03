@@ -1,7 +1,7 @@
 FROM ubuntu
-MAINTAINER M Matos marco.matos@emaratech.MAINTAINER
+MAINTAINER M Matos marco@marco.ae
 
-ENV REGISTRATION_TOKEN bDpi7KUXg3iNrjr6GfD4
+ENV REGISTRATION_TOKEN <your.token.here>
 
 RUN apt-get update
 RUN apt-get install gitlab-ci-multi-runner -y
