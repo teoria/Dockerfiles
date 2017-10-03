@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+    upsource:
+        build: .
+        image: jetbrains/upsource:2017.2.2307
+        container_name: upsource
+        hostname: upsource
+        domainname: emaratech.ae
+        restart: on-failure
+        ports:
+            - 8081:8080
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /etc/timezone:/etc/timezone:ro
+            - /opt/upsource/data:/usr/local/upsource/data
+            - /opt/upsource/conf:/usr/local/upsource/conf
+            - /opt/upsource/logs:/usr/local/upsource/logs
+            - /opt/upsource/backups:/home/jetbrains/
+            - /tmp:/tmp
+#        extra_hosts: 
+#            - "git.emaratech.ae:10.155.20.121"
+        ulimits:
+            memlock: -1
+            nofile: 100000
+            nproc: 32768

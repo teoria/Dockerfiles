@@ -1,0 +1,29 @@
+version: '2.1'
+
+services:
+    jenkins:
+        image: jenkinsci/jenkins
+        container_name: jenkins
+        privileged: true
+        environment:
+            JAVA_OPTS: -Xmx5000m -XX:MaxPermSize=1024m
+#            JENKINS_OPTS: --httpPort=-1 --httpsPort=8443 --httpsKeyStore=/var/jenkins_home/jenkins_keystore.jks --httpsKeyStorePassword=rtt666
+        volumes:
+            - /docker-data/jenkins/jenkins_home:/var/jenkins_home
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /usr/bin/docker:/usr/bin/docker
+        ports:
+#            - 443:8443
+            - 8080:8080
+            - 50000:50000
+        extra_hosts:
+            - "git.your.domain.com:10.155.20.121"
+            - "artifactory.your.domain.com:10.155.20.176"
+            - "dockerregistry.your.domain.com:10.12.244.34"
+        mem_limit: 12g
+        restart: unless-stopped
+        networks:
+            - dockernet
+networks:
+    dockernet:
+        external: true

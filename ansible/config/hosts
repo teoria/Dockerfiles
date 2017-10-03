@@ -1,0 +1,92 @@
+[OSEv3:children]
+masters
+nodes
+etcd
+
+[OSEv3:vars]
+ansible_ssh_user=centos
+ansible_sudo=true
+ansible_become_user=root
+
+deployment_type=origin
+openshift_release=v1.4
+openshift_image_tag=v1.4.1
+openshift_pkg_version=-1.4.1
+
+openshift_clock_enabled=true
+
+openshift_master_default_subdomain=apps.140.86.55.167.xip.io
+osm_default_node_selector='region=primary'
+
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/htpasswd'}]
+openshift_master_htpasswd_users={'admin': '$apr1$7ULTvyv1$y2DYjnHRZKIHrCKLj.Ur/1'}
+
+# Router selector (optional)
+# Router will only be created if nodes matching this label are present.
+# Default value: 'region=infra'
+openshift_hosted_router_selector='region=infra'
+#
+# Router replicas (optional)
+# Unless specified, openshift-ansible will calculate the replica count
+# based on the number of nodes matching the openshift router selector.
+#openshift_hosted_router_replicas=2
+#
+# Router force subdomain (optional)
+# A router path format to force on all routes used by this router
+# (will ignore the route host value)
+openshift_hosted_router_force_subdomain='${name}-${namespace}.apps.140.86.55.167.xip.io'
+#
+# Router certificate (optional)
+# Provide local certificate paths which will be configured as the
+# router's default certificate.
+#openshift_hosted_router_certificate={"certfile": "/path/to/router.crt", "keyfile": "/path/to/router.key", "cafile": "/path/to/router-ca.crt"}
+#
+# Registry selector (optional)
+# Registry will only be created if nodes matching this label are present.
+# Default value: 'region=infra'
+openshift_hosted_registry_selector='region=infra'
+#
+# Registry replicas (optional)
+# Unless specified, openshift-ansible will calculate the replica count
+# based on the number of nodes matching the openshift registry selector.
+#openshift_hosted_registry_replicas=2
+# Registry Storage Options
+#
+# NFS Host Group
+openshift_hosted_registry_storage_kind=nfs
+openshift_hosted_registry_storage_access_modes=['ReadWriteMany']
+openshift_hosted_registry_storage_host=oshift-master
+openshift_hosted_registry_storage_nfs_directory=/nfs/registry
+openshift_hosted_registry_storage_volume_name=registry
+openshift_hosted_registry_storage_volume_size=15Gi
+#
+# Metrics deployment
+# See: https://docs.openshift.com/enterprise/latest/install_config/cluster_metrics.html
+#
+# By default metrics are not automatically deployed, set this to enable them
+openshift_hosted_metrics_deploy=true
+#
+# Storage Options
+openshift_hosted_metrics_storage_kind=nfs
+openshift_hosted_metrics_storage_access_modes=['ReadWriteOnce']
+openshift_hosted_metrics_storage_host=oshift-master
+openshift_hosted_metrics_storage_nfs_directory=/nfs/metrics
+openshift_hosted_metrics_storage_volume_name=metrics
+openshift_hosted_metrics_storage_volume_size=10Gi
+#
+# Override metricsPublicURL in the master config for cluster metrics
+# Defaults to https://hawkular-metrics.{{openshift_master_default_subdomain}}/hawkular/metrics
+# Currently, you may only alter the hostname portion of the url, alterting the
+# `/hawkular/metrics` path will break installation of metrics.
+openshift_hosted_metrics_public_url=https://hawkular-metrics-openshift-infra.apps.140.86.55.167.xip.io/hawkular/metrics
+
+[masters]
+oshift-master openshift_ip=10.1.1.101 openshift_hostname=oshift-master-priv openshift_public_ip=140.86.55.167 openshift_public_hostname=oc-140-86-55-167.compute.oraclecloud.com
+
+[nodes]
+oshift-master openshift_node_labels="{'region': 'infra', 'zone': 'dc1'}" openshift_schedulable=true openshift_ip=10.1.1.101 openshift_hostname=oshift-master-priv openshift_public_ip=140.86.55.167 openshift_public_hostname=oc-140-86-55-167.compute.oraclecloud.com
+oshift-compute1 openshift_node_labels="{'region': 'primary', 'zone': 'dc1'}" openshift_schedulable=true openshift_ip=10.1.1.11 openshift_hostname=oshift-compute1-priv openshift_public_ip=140.86.55.77 openshift_public_hostname=oc-140-86-55-77.compute.oraclecloud.com
+oshift-compute2 openshift_node_labels="{'region': 'primary', 'zone': 'dc2'}" openshift_schedulable=true openshift_ip=10.1.1.12 openshift_hostname=oshift-compute2-priv openshift_public_ip=140.86.49.95 openshift_public_hostname=oc-140-86-49-95.compute.oraclecloud.com
+
+[etcd]
+oshift-master openshift_node_labels="{'region': 'infra', 'zone': 'dc1'}" openshift_schedulable=true openshift_ip=10.1.1.101 openshift_hostname=oshift-master-priv openshift_public_ip=140.86.55.167 openshift_public_hostname=oc-140-86-55-167.compute.oraclecloud.com

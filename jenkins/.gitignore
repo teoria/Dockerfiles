@@ -1,0 +1,7 @@
+git-ignore/
+jenkins_home/
+.groovy/
+.java/
+.vscode/
+jenkins.sh
+Makefile.1
