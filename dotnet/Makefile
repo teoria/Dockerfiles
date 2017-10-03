@@ -1,7 +1,7 @@
 # makefile for Docker containers management/automation
-# Marco Matos  <marco.matos@emaratech.ae>
+# Marco Matos  <marco.matos@marco.ae>
 
-NAME = dockerregistry.emaratech.ae:5000/dotnet
+NAME = registry.your.repo.here:5000/dotnet
 TIMESTAMP:= `date +%Y`-`date +%m`-`date +%d`-`date +%s`
 BRANCH:= $$(git branch)
 REVISION:= $$(git rev-parse HEAD)
