@@ -1,5 +1,5 @@
 FROM ubuntu
-LABEL   maintainer="Marco Matos marco.matos@emaratech.ae"
+LABEL   maintainer="Marco Matos marco@marco.ae"
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN \

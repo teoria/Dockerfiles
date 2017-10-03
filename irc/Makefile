@@ -1,7 +1,7 @@
 # Makefile for Docker containers management/automation
-# Marco Matos  <marco.matos@emaratech.ae>
+# Marco Matos  <marco@marco.ae>
 
-NAME = reg.emaratech.ae:5000/irc
+NAME = reg.your.registry.server:5000/irc
 TIMESTAMP:= `date +%Y`-`date +%m`-`date +%d`-`date +%s`
 BRANCH:= $$(git branch)
 REVISION:= $$(git rev-parse HEAD)

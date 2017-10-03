@@ -1,6 +1,6 @@
 FROM microsoft/iis
 
-MAINTAINER Marco Matos marco.matos@emaratech.ae 
+MAINTAINER Marco Matos marco@marco.ae
 
 
 RUN mkdir c:\site

@@ -6,7 +6,7 @@ services:
         image: jetbrains/upsource:2017.2.2307
         container_name: upsource
         hostname: upsource
-        domainname: emaratech.ae
+        domainname: your.domain.here.com
         restart: on-failure
         ports:
             - 8081:8080
@@ -19,7 +19,7 @@ services:
             - /opt/upsource/backups:/home/jetbrains/
             - /tmp:/tmp
 #        extra_hosts: 
-#            - "git.emaratech.ae:10.155.20.121"
+#            - "some.extra.host.here 127.0.0.1"
         ulimits:
             memlock: -1
             nofile: 100000
