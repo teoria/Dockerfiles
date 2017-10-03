@@ -1,5 +1,5 @@
 FROM alpine
-MAINTAINER Marco Matos marco.matos@emaratech.ae
+MAINTAINER Marco Matos marco@marco.ae
 
 ADD ntpd.conf /etc/ntpd.conf
 

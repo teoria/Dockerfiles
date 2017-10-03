@@ -1,5 +1,5 @@
 FROM java:8
-MAINTAINER Marco Matos marco.matos@emaratech.ae
+MAINTAINER Marco Matos marco@marco.ae
 
 ADD apache-archiva-2.2.3-bin.tar.gz / 
 
