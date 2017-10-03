@@ -1,6 +1,0 @@
-
-Date: 2017-05-18-1495102407
-Branch: * master
-Revision: 1de5e55d93d77feaac3ca75c820b12afb6fe64fd
-Deployed by: Marco Matos
-
