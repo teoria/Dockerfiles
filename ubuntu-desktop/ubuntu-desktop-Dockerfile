@@ -1,0 +1,27 @@
+#
+# Ubuntu Desktop (LXDE) Dockerfile
+#
+# https://github.com/dockerfile/ubuntu-desktop
+#
+## USAGE:
+##	 docker run -it --rm -p 5901:5901 -e USER=root dockerfile/ubuntu-desktop \
+##   	 bash -c "vncserver :1 -geometry 1280x800 -depth 24 && tail -F /root/.vnc/*.log"
+##
+
+# Pull base image.
+FROM ubuntu
+
+# Install LXDE and VNC server.
+RUN \
+  apt-get update && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y lxde-core lxterminal tightvncserver && \
+  rm -rf /var/lib/apt/lists/*
+
+# Define working directory.
+WORKDIR /data
+
+# Define default command.
+CMD ["bash"]
+
+# Expose ports.
+EXPOSE 5901
