@@ -1,6 +1,6 @@
-FROM alpine
+FROM ubuntu
 
-RUN apk update && apk add firefox-esr sudo libcanberra-gtk3
+RUN apt update && apt install -y firefox sudo
 
 # Replace 1000 with your user / group id
 RUN export uid=1000 gid=1000 && \
